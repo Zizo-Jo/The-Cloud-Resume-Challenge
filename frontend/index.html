@@ -5,86 +5,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zihao Zhou | Cloud Engineer</title>
     <style>
-        /* Global Variables */
+        /* Global Styles */
         :root {
-            --primary: #232f3e;   /* AWS Dark Blue */
-            --accent: #ff9900;    /* AWS Orange */
-            --text-main: #333333;
-            --text-light: #666666;
+            --primary: #232f3e;
+            --accent: #ff9900;
+            --text-main: #333;
+            --text-light: #666;
             --bg-body: #f8f9fa;
-            --bg-card: #ffffff;
+            --bg-card: #fff;
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --radius: 8px;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
             background-color: var(--bg-body);
             color: var(--text-main);
-            line-height: 1.6;
             margin: 0;
             padding: 0;
+            line-height: 1.6;
+            transition: all 0.3s ease;
         }
 
-        /* Header Section */
+        /* Language Switcher (Top Right) */
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .lang-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.4);
+            color: white;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            margin-left: 5px;
+            transition: all 0.2s;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Header */
         header {
             background-color: var(--primary);
             color: white;
-            padding: 40px 20px;
+            padding: 60px 20px 40px;
             text-align: center;
+            position: relative;
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            font-weight: 700;
-        }
+        header h1 { margin: 0; font-size: 2.5rem; }
+        header p { opacity: 0.9; margin-top: 10px; }
 
-        header p {
-            margin: 10px 0 0;
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        /* Social Links */
         .social-links {
             margin-top: 20px;
             display: flex;
             justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .social-btn {
-            background: rgba(255,255,255,0.1);
             color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
             text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 5px 15px;
+            border-radius: 20px;
             font-size: 0.9rem;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.2);
+            transition: 0.3s;
         }
 
         .social-btn:hover {
             background: var(--accent);
             color: var(--primary);
             border-color: var(--accent);
-            transform: translateY(-2px);
         }
 
-        /* Main Layout */
+        /* Layout */
         .container {
             max-width: 900px;
-            margin: -30px auto 40px; /* Overlap header */
+            margin: -30px auto 40px;
             padding: 0 20px;
             position: relative;
         }
 
-        /* Card Style */
         .card {
             background: var(--bg-card);
-            border-radius: var(--radius);
+            border-radius: 8px;
             box-shadow: var(--shadow);
             padding: 30px;
             margin-bottom: 25px;
@@ -95,230 +109,273 @@
             border-bottom: 2px solid #eee;
             padding-bottom: 10px;
             margin-top: 0;
-            font-size: 1.5rem;
         }
 
-        h3 {
-            margin: 0 0 5px 0;
-            color: #222;
-        }
-
-        .subtitle {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        /* Certification Badge */
-        .cert-badge {
-            display: flex;
-            align-items: center;
+        /* Certifications */
+        .cert-box {
             background: #f0f4f8;
             padding: 15px;
-            border-radius: var(--radius);
             border-left: 5px solid var(--accent);
+            border-radius: 4px;
+            display: flex;
             justify-content: space-between;
+            align-items: center;
             flex-wrap: wrap;
             gap: 10px;
         }
         
         .verify-link {
-            background-color: var(--primary);
+            background: var(--primary);
             color: white;
             text-decoration: none;
-            padding: 6px 12px;
+            padding: 5px 12px;
             border-radius: 4px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: bold;
         }
-        .verify-link:hover {
-            background-color: var(--accent);
-        }
 
-        /* Skill Tags */
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
+        /* Skills */
         .skill-tag {
-            background-color: #e9ecef;
+            display: inline-block;
+            background: #e9ecef;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            margin: 0 5px 5px 0;
             color: var(--primary);
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.9rem;
             font-weight: 500;
-        }
-
-        /* Projects */
-        .project-item {
-            margin-bottom: 25px;
-            padding-bottom: 25px;
-            border-bottom: 1px dashed #eee;
-        }
-        .project-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 20px;
+            padding: 30px;
             color: var(--text-light);
             font-size: 0.9rem;
         }
 
-        .visitor-counter {
-            display: inline-block;
-            margin-top: 10px;
+        .counter {
             background: white;
-            padding: 8px 20px;
-            border-radius: 50px;
+            padding: 5px 15px;
+            border-radius: 20px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             font-weight: bold;
             color: var(--primary);
-            border: 1px solid #eee;
         }
-        
-        #counter { color: var(--accent); }
 
-        /* Responsive Design */
+        /* Utility Class for Toggling */
+        .hidden { display: none; }
+        
         @media (max-width: 600px) {
-            header h1 { font-size: 2rem; }
-            .container { margin-top: 20px; }
-            .cert-badge { flex-direction: column; align-items: flex-start; }
+            .cert-box { flex-direction: column; align-items: flex-start; }
+            .lang-switch { top: 10px; right: 10px; }
         }
     </style>
 </head>
 <body>
 
     <header>
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="switchLang('en')" id="btn-en">🇬🇧 English</button>
+            <button class="lang-btn" onclick="switchLang('es')" id="btn-es">🇪🇸 Español</button>
+        </div>
+
         <h1>Zihao Zhou</h1>
-        <p>Telecommunications Network Engineering Student | Cloud & DevOps Enthusiast</p>
-        <p style="font-size: 0.9rem; margin-top: 5px;">📍 Badalona, Barcelona, Catalonia</p>
         
+        <div class="lang-en">
+            <p>Telecommunications Network Engineering Student | Cloud & DevOps Enthusiast</p>
+            <p style="font-size: 0.9rem;">📍 Badalona, Barcelona, Catalonia</p>
+        </div>
+
+        <div class="lang-es hidden">
+            <p>Estudiante de Ingeniería de Redes de Telecomunicación | Entusiasta de Cloud y DevOps</p>
+            <p style="font-size: 0.9rem;">📍 Badalona, Barcelona, Cataluña</p>
+        </div>
+
         <div class="social-links">
-            <a href="mailto:zizo.xhao@gmail.com" class="social-btn">📧 Email</a>
-            <a href="https://www.linkedin.com/in/zihao-zhou-a7334628a" target="_blank" class="social-btn">🔗 LinkedIn</a>
-            <a href="https://github.com/Zizo-Jo" target="_blank" class="social-btn">🐙 GitHub</a>
+            <a href="mailto:zizo.xhao@gmail.com" class="social-btn">Email</a>
+            <a href="https://www.linkedin.com/in/zihao-zhou-a7334628a" target="_blank" class="social-btn">LinkedIn</a>
+            <a href="https://github.com/Zizo-Jo" target="_blank" class="social-btn">GitHub</a>
         </div>
     </header>
 
     <div class="container">
 
-        <section class="card">
-            <h2>Certifications</h2>
-            <div class="cert-badge">
-                <div>
-                    <h3>AWS Certified Solutions Architect – Associate (SAA)</h3>
-                    <span class="subtitle">Validates expertise in designing distributed systems on AWS.</span>
+        <div class="lang-en">
+            
+            <section class="card">
+                <h2>Certifications</h2>
+                <div class="cert-box">
+                    <div>
+                        <h3 style="margin:0;">AWS Certified Solutions Architect – Associate (SAA)</h3>
+                        <small style="color:#666;">Validates expertise in distributed systems on AWS.</small>
+                    </div>
+                    <a href="https://www.credly.com/badges/ec97558b-dab5-41d9-85c2-4d1158672f18/public_url" target="_blank" class="verify-link">Verify Credential ➜</a>
                 </div>
-                <a href="https://www.credly.com/badges/ec97558b-dab5-41d9-85c2-4d1158672f18/public_url" target="_blank" class="verify-link">Verify Credential ➜</a>
-            </div>
-        </section>
+            </section>
 
-        <section class="card">
-            <h2>Technical Skills</h2>
-            <div style="margin-bottom: 15px;">
-                <h3 style="font-size: 1rem; color: var(--text-light);">Cloud & DevOps</h3>
-                <div class="skills-container">
+            <section class="card">
+                <h2>Technical Skills</h2>
+                <div style="margin-bottom:15px;">
+                    <strong>Cloud & DevOps:</strong><br>
                     <span class="skill-tag">AWS (EC2, S3, Lambda, VPC)</span>
                     <span class="skill-tag">Terraform (IaC)</span>
                     <span class="skill-tag">Kubernetes</span>
                     <span class="skill-tag">Docker</span>
-                    <span class="skill-tag">Linux Administration</span>
+                    <span class="skill-tag">Linux</span>
                 </div>
-            </div>
-            
-            <div style="margin-bottom: 15px;">
-                <h3 style="font-size: 1rem; color: var(--text-light);">Development</h3>
-                <div class="skills-container">
+                <div style="margin-bottom:15px;">
+                    <strong>Development:</strong><br>
                     <span class="skill-tag">Python</span>
                     <span class="skill-tag">Shell Scripting</span>
                     <span class="skill-tag">C/C++</span>
                     <span class="skill-tag">Java</span>
                     <span class="skill-tag">Git</span>
                 </div>
-            </div>
-
-            <div>
-                <h3 style="font-size: 1rem; color: var(--text-light);">Network Security</h3>
-                <div class="skills-container">
+                <div>
+                    <strong>Network Security:</strong><br>
                     <span class="skill-tag">Wireshark</span>
                     <span class="skill-tag">OpenVPN</span>
                     <span class="skill-tag">PKI & TLS</span>
                     <span class="skill-tag">Cisco Packet Tracer</span>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="card">
-            <h2>Education</h2>
-            <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
-                <div>
-                    <h3>Universitat Pompeu Fabra</h3>
-                    <span class="subtitle">Telecommunications Network Engineering (English-taught)</span>
+            <section class="card">
+                <h2>Key Projects</h2>
+                <div style="margin-bottom:20px;">
+                    <h3 style="margin-bottom:5px;">The Cloud Resume Challenge (AWS & Terraform)</h3>
+                    <p style="margin:0;">Deployed a serverless resume website using <strong>S3, CloudFront, Lambda, API Gateway, and DynamoDB</strong>. Fully automated infrastructure provisioning with <strong>Terraform</strong>. Implemented a real-time visitor counter with Python backend logic.</p>
                 </div>
-                <span style="color: var(--accent); font-weight: bold;">2023 - Present</span>
-            </div>
-        </section>
+                <div style="margin-bottom:20px;">
+                    <h3 style="margin-bottom:5px;">End-to-End Kubernetes Application Management</h3>
+                    <p style="margin:0;">Managed lifecycle of a Flask REST API on <strong>Kubernetes (Minikube)</strong>. Authored YAML manifests for Deployments/Services, implemented auto-scaling replicas, and integrated a stateful MongoDB database.</p>
+                </div>
+                <div style="margin-bottom:20px;">
+                    <h3 style="margin-bottom:5px;">8values Quiz on AWS (Infrastructure Project)</h3>
+                    <p style="margin:0;">Engineered a static website on AWS using Terraform automation. Configured S3 for hosting and CloudFront for global content delivery, optimizing latency and security.</p>
+                </div>
+                <div>
+                    <h3 style="margin-bottom:5px;">OpenVPN Implementation & Analysis</h3>
+                    <p style="margin:0;">Configured a secure VPN using PKI certificate-based authentication. Analyzed TLS handshake packets using Wireshark to troubleshoot client isolation routing issues.</p>
+                </div>
+            </section>
 
-        <section class="card">
-            <h2>Key Projects</h2>
+            <section class="card">
+                <h2>Languages</h2>
+                <span class="skill-tag">English</span>
+                <span class="skill-tag">Chinese</span>
+                <span class="skill-tag">Spanish</span>
+            </section>
+        </div>
+
+        <div class="lang-es hidden">
             
-            <div class="project-item">
-                <h3>The Cloud Resume Challenge (AWS & Terraform)</h3>
-                <p>Deployed a serverless resume website using <strong>S3, CloudFront, Lambda, API Gateway, and DynamoDB</strong>. Fully automated infrastructure provisioning with <strong>Terraform</strong>. Implemented a real-time visitor counter with Python backend logic.</p>
-            </div>
+            <section class="card">
+                <h2>Certificaciones</h2>
+                <div class="cert-box">
+                    <div>
+                        <h3 style="margin:0;">AWS Certified Solutions Architect – Associate (SAA)</h3>
+                        <small style="color:#666;">Valida experiencia en diseño de sistemas distribuidos en AWS.</small>
+                    </div>
+                    <a href="https://www.credly.com/badges/ec97558b-dab5-41d9-85c2-4d1158672f18/public_url" target="_blank" class="verify-link">Verificar Credencial ➜</a>
+                </div>
+            </section>
 
-            <div class="project-item">
-                <h3>End-to-End Kubernetes Application Management</h3>
-                <p>Managed lifecycle of a Flask REST API on <strong>Kubernetes (Minikube)</strong>. Authored YAML manifests for Deployments/Services, implemented auto-scaling replicas, and integrated a stateful MongoDB database.</p>
-            </div>
+            <section class="card">
+                <h2>Habilidades Técnicas</h2>
+                <div style="margin-bottom:15px;">
+                    <strong>Cloud y DevOps:</strong><br>
+                    <span class="skill-tag">AWS (EC2, S3, Lambda, VPC)</span>
+                    <span class="skill-tag">Terraform (IaC)</span>
+                    <span class="skill-tag">Kubernetes</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Administración Linux</span>
+                </div>
+                <div style="margin-bottom:15px;">
+                    <strong>Desarrollo:</strong><br>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Shell Scripting</span>
+                    <span class="skill-tag">C/C++</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">Git</span>
+                </div>
+                <div>
+                    <strong>Seguridad de Red:</strong><br>
+                    <span class="skill-tag">Wireshark</span>
+                    <span class="skill-tag">OpenVPN</span>
+                    <span class="skill-tag">PKI & TLS</span>
+                    <span class="skill-tag">Cisco Packet Tracer</span>
+                </div>
+            </section>
 
-            <div class="project-item">
-                <h3>8values Quiz on AWS (Infrastructure Project)</h3>
-                <p>Engineered a static website on AWS using Terraform automation. Configured S3 for hosting and CloudFront for global content delivery, optimizing latency and security.</p>
-            </div>
+            <section class="card">
+                <h2>Proyectos Destacados</h2>
+                <div style="margin-bottom:20px;">
+                    <h3 style="margin-bottom:5px;">The Cloud Resume Challenge (AWS y Terraform)</h3>
+                    <p style="margin:0;">Despliegue de un sitio web serverless utilizando <strong>S3, CloudFront, Lambda, API Gateway y DynamoDB</strong>. Aprovisionamiento de infraestructura totalmente automatizado con <strong>Terraform (IaC)</strong>. Implementación de un contador de visitas en tiempo real con lógica backend en Python.</p>
+                </div>
+                <div style="margin-bottom:20px;">
+                    <h3 style="margin-bottom:5px;">Gestión de Aplicaciones Kubernetes End-to-End</h3>
+                    <p style="margin:0;">Gestión del ciclo de vida de una API REST Flask en <strong>Kubernetes (Minikube)</strong>. Creación de manifiestos YAML para Deployments/Services, implementación de réplicas auto-escalables e integración de una base de datos MongoDB stateful.</p>
+                </div>
+                <div style="margin-bottom:20px;">
+                    <h3 style="margin-bottom:5px;">8values Quiz en AWS (Proyecto de Infraestructura)</h3>
+                    <p style="margin:0;">Ingeniería de un sitio web estático en AWS utilizando automatización con Terraform. Configuración de S3 para alojamiento y CloudFront para la entrega global de contenido, optimizando la latencia y la seguridad.</p>
+                </div>
+                <div>
+                    <h3 style="margin-bottom:5px;">Implementación y Análisis de OpenVPN</h3>
+                    <p style="margin:0;">Configuración de una VPN segura utilizando autenticación basada en certificados PKI. Análisis de paquetes de handshake TLS utilizando Wireshark para solucionar problemas de enrutamiento y aislamiento de clientes.</p>
+                </div>
+            </section>
 
-            <div class="project-item">
-                <h3>OpenVPN Implementation & Analysis</h3>
-                <p>Configured a secure VPN using PKI certificate-based authentication. Analyzed TLS handshake packets using Wireshark to troubleshoot client isolation routing issues.</p>
-            </div>
-        </section>
-
-        <section class="card">
-            <h2>Languages</h2>
-            <div class="skills-container">
-                <span class="skill-tag">English </span>
-                <span class="skill-tag">Spanish </span>
-                <span class="skill-tag">Chinese </span>
-            </div>
-        </section>
+            <section class="card">
+                <h2>Idiomas</h2>
+                <span class="skill-tag">Inglés</span>
+                <span class="skill-tag">Chino</span>
+                <span class="skill-tag">Español</span>
+            </section>
+        </div>
 
     </div>
 
     <footer>
         <p>© 2026 Zihao Zhou. Hosted on AWS S3 & CloudFront.</p>
-        
-        <div class="visitor-counter">
-            👀 Visitor Count: <span id="counter">Loading...</span>
+        <div class="counter">
+            <span class="lang-en">👀 Visitor Count: </span>
+            <span class="lang-es hidden">👀 Visitas: </span>
+            <span id="counter">Loading...</span>
         </div>
     </footer>
 
     <script>
-        // API URL (From Terraform Output)
+        // 1. Language Logic
+        function switchLang(lang) {
+            const enElements = document.querySelectorAll('.lang-en');
+            const esElements = document.querySelectorAll('.lang-es');
+            const btnEn = document.getElementById('btn-en');
+            const btnEs = document.getElementById('btn-es');
+
+            if (lang === 'en') {
+                enElements.forEach(el => el.classList.remove('hidden'));
+                esElements.forEach(el => el.classList.add('hidden'));
+                btnEn.classList.add('active');
+                btnEs.classList.remove('active');
+            } else {
+                enElements.forEach(el => el.classList.add('hidden'));
+                esElements.forEach(el => el.classList.remove('hidden'));
+                btnEn.classList.remove('active');
+                btnEs.classList.add('active');
+            }
+        }
+
+        // 2. API Logic
+        // ⚠️ PASTE YOUR TERRAFORM API URL HERE (Don't forget /count)
         const apiUrl = "https://bkplo22f76.execute-api.us-east-1.amazonaws.com/count"; 
 
         fetch(apiUrl)
             .then(response => {
-                if (!response.ok) {
-                    throw new Error("HTTP error " + response.status);
-                }
+                if (!response.ok) throw new Error("HTTP error " + response.status);
                 return response.json();
             })
             .then(data => {
@@ -326,7 +383,7 @@
             })
             .catch(error => {
                 console.error('Error:', error);
-                document.getElementById('counter').innerText = "Offline";
+                document.getElementById('counter').innerText = "-";
             });
     </script>
 </body>
